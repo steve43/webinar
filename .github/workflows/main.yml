@@ -1,0 +1,24 @@
+name: API CI
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Use Node.js 12.x
+      uses: actions/setup-node@v1
+      with:
+        node-version: "12.x"
+    - run: npm install swaggerhub-cli -g && npm install js-yaml
+    # Run other automation here, such as tests or standardization checks
+    - run: |
+        export API_VERSION=$(node ./bin/get-version.js) && \
+        swaggerhub api:publish "smizell/Test2/$API_VERSION" && \
+        swaggerhub api:publish "smizell/Test2/$API_VERSION"
+      env:
+        SWAGGERHUB_API_KEY: ${{ secrets.SWAGGERHUB_API_KEY }}
+      if: github.ref == 'refs/heads/master'

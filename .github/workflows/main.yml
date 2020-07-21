@@ -17,8 +17,8 @@ jobs:
     # Run other automation here, such as tests or standardization checks
     - run: |
         export API_VERSION=$(node ./bin/get-version.js) && \
-        swaggerhub api:publish "smizell/Test2/$API_VERSION" && \
-        swaggerhub api:publish "smizell/Test2/$API_VERSION"
+        swaggerhub api:publish "smizelldemo/webinar/$API_VERSION" && \
+        swaggerhub api:publish "smizelldemo/webinar/$API_VERSION"
       env:
         SWAGGERHUB_API_KEY: ${{ secrets.SWAGGERHUB_API_KEY }}
       if: github.ref == 'refs/heads/master'

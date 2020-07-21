@@ -2,7 +2,6 @@ name: API CI
 
 on:
   push:
-  pull_request:
 
 jobs:
   build:
@@ -18,7 +17,7 @@ jobs:
     - run: |
         export API_VERSION=$(node ./bin/get-version.js) && \
         swaggerhub api:publish "smizelldemo/webinar/$API_VERSION" && \
-        swaggerhub api:publish "smizelldemo/webinar/$API_VERSION"
+        swaggerhub api:setdefault "smizelldemo/webinar/$API_VERSION"
       env:
         SWAGGERHUB_API_KEY: ${{ secrets.SWAGGERHUB_API_KEY }}
       if: github.ref == 'refs/heads/master'

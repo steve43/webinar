@@ -1,6 +1,6 @@
 swagger: '2.0'
 info:
-  description: Swagger Petstore API
+  description: Swagger Petstore API (final)
   version: 1.1.0
   title: Swagger Petstore
   termsOfService: http://swagger.io/terms/
